@@ -1,0 +1,3 @@
+[submodule "Experiments/IntervalVerifier"]
+	path = Experiments/IntervalVerifier
+	url = https://github.com/sdemarch/IntervalVerifier
