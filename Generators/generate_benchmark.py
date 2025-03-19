@@ -73,7 +73,7 @@ def main(model: int, precision: int):
         for i in range(xv.shape[0]):
             p.write(f'(declare-const X_{i} Real)\n')
         p.write('\n')
-        for i in range(0 if ntype == 'bin' else 10):
+        for i in range(1 if ntype == 'bin' else 10):
             p.write(f'(declare-const Y_{i} Real)\n\n')
 
         # Constraints on X

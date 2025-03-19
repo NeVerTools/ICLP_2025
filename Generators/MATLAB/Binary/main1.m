@@ -7,7 +7,7 @@ load main0
 
 %%
 i = 2;
-p = 2;
+p = 4;
 w_q = redprec(w,p);
 X_q = redprec(XT(i,:)',p);
 fprintf("X p digit Yt = %f\n",YT(i));
