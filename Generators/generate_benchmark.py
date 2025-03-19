@@ -19,7 +19,7 @@ def load_weights(m: int, p: int) -> list:
             lines = w_f.readlines()
             return [np.array([l.strip('\n').split(',') for l in lines], dtype=float)]
     else:
-        with open(f'Data/fc1_{m}_{p}.csv', 'r') as fc1, open(f'Data/fc2_{m}_{p}.csv', 'w') as fc2:
+        with open(f'Data/fc1_{m}_{p}.csv', 'r') as fc1, open(f'Data/fc2_{m}_{p}.csv', 'r') as fc2:
             lines1 = fc1.readlines()
             lines2 = fc2.readlines()
             weights1 = np.array([l.strip('\n').split(',') for l in lines1], dtype=float)

@@ -6,5 +6,5 @@ clc
 load main0
 
 %% Export data to CSV
-writematrix(redprec(w, 2)', '../Data/w_0_2.csv')
-writematrix(redprec(w, 5)', '../Data/w_0_5.csv')
+writematrix(redprec(w, 2)', '../../Data/w_0_2.csv')
+writematrix(redprec(w, 4)', '../../Data/w_0_4.csv')
