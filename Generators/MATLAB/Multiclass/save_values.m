@@ -6,4 +6,4 @@ clc
 load main0
 
 %% Export data to CSV
-writematrix(redprec(w, 2)', 'W_multi_p2.csv')
+writematrix(redprec(W, 2)', '../Data/w_1_2.csv')
