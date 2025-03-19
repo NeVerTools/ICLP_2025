@@ -51,11 +51,11 @@ def main(index: int, model: int, precision: int):
 
     f = 1 if model % 2 == 0 else 10
     if len(weights) == 1:
-        nn.append_node(FullyConnectedNode('fc1', (784,), f, weights[0], has_bias=False))
+        nn.append_node(FullyConnectedNode('fc1', (784,), f, weights[0], np.zeros(f)))
     else:
-        nn.append_node(FullyConnectedNode('fc1', (784,), 1000, weights[0], has_bias=False))
+        nn.append_node(FullyConnectedNode('fc1', (784,), 1000, weights[0], np.zeros(1000)))
         nn.append_node(ReLUNode('rl1', (1000,)))
-        nn.append_node(FullyConnectedNode('fc2', (1000,), f, weights[1], has_bias=False))
+        nn.append_node(FullyConnectedNode('fc2', (1000,), f, weights[1], np.zeros(f)))
 
     # Save network
     ONNXConverter().from_neural_network(nn).save(f'../Experiments/Networks/{net_name}.onnx')
