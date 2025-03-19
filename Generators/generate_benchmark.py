@@ -15,11 +15,11 @@ def load_weights(m: int, p: int) -> list:
     """
 
     if m < 2:
-        with open(f'Data/w_{m}_{p}.csv', 'r') as w_f:
+        with open(f'Data/weights/w_{m}_{p}.csv', 'r') as w_f:
             lines = w_f.readlines()
             return [np.array([l.strip('\n').split(',') for l in lines], dtype=float)]
     else:
-        with open(f'Data/fc1_{m}_{p}.csv', 'r') as fc1, open(f'Data/fc2_{m}_{p}.csv', 'r') as fc2:
+        with open(f'Data/weights/fc1_{m}_{p}.csv', 'r') as fc1, open(f'Data/weights/fc2_{m}_{p}.csv', 'r') as fc2:
             lines1 = fc1.readlines()
             lines2 = fc2.readlines()
             weights1 = np.array([l.strip('\n').split(',') for l in lines1], dtype=float)
@@ -59,13 +59,13 @@ def main(model: int, precision: int):
     ONNXConverter().from_neural_network(nn).save(f'../Experiments/Networks/{net_name}.onnx')
 
     # Open corresponding xv
-    with open(f'Data/xv_{model}_{precision}.csv', 'r') as xv_f:
+    with open(f'Data/points/xv_{model}_{precision}.csv', 'r') as xv_f:
         lines = xv_f.readlines()
         xv = np.array([l.strip('\n').split(',') for l in lines], dtype=float)
 
     # Create property
     eps = 10 ** -precision
-    with open(f'Data/yt_{model}_{precision}.csv', 'r') as lab:
+    with open(f'Data/labels/yt_{model}_{precision}.csv', 'r') as lab:
         l = int(lab.read())
 
     with open(f'../Experiments/Properties/prop_{ntype}_{arch}_{precision}_label_{l}.vnnlib', 'w') as p:
