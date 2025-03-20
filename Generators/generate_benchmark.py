@@ -34,10 +34,10 @@ def main(index: int, model: int, precision: int):
 
     :param index: the example to consider
     :param model: the model to load (0: binary linear, 1: multiclass linear, 2: binary deep, 3: multiclass deep)
-    :param precision: the precision of the model (only 2 and 4 available)
+    :param precision: the precision of the model
     """
 
-    assert model in [0, 1, 2, 3] and precision in [2, 4], "Incorrect arguments, please read documentation"
+    assert model in [0, 1, 2, 3], "Incorrect arguments, please read documentation"
 
     # Open weights
     weights = load_weights(index, model, precision)
