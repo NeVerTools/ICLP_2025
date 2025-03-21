@@ -8,4 +8,4 @@ with open('../instances.csv', 'r') as inst:
 
         subprocess.run(['python', f'{root}/pyrat.pyc', '--model_path', f'../{f_net}', '--property_path', f'../{f_prop}',
                         '--split', 'True', '--verbose', 'True', '--nb_process', '16', '--domains', 'zonotopes',
-                        '--timeout', timeout, ])
+                        '--timeout', timeout])

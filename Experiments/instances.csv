@@ -1,2 +1,4 @@
-Networks/mnist_0_bin_lin_2.onnx,Properties/prop_0_bin_lin_2_label_1.vnnlib,60
-Networks/mnist_0_bin_lin_4.onnx,Properties/prop_0_bin_lin_4_label_1.vnnlib,60
+Networks/mnist_0_bin_lin_3.onnx,Properties/prop_0_bin_lin_3_label_1.vnnlib,60
+Networks/mnist_0_multi_lin_3.onnx,Properties/prop_0_multi_lin_3_label_1.vnnlib,60
+Networks/mnist_1_bin_deep_3.onnx,Properties/prop_1_bin_deep_3_label_1.vnnlib,60
+Networks/mnist_5_multi_deep_3.onnx,Properties/prop_5_multi_deep_3_label_0.vnnlib,60
