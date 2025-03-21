@@ -55,9 +55,9 @@ Y_q = pred_q(X_v,R_q,w_q,p);
 fprintf("%+f - Verification Point - Y predicted computation double \n",Y_o);
 fprintf("%+f - Verification Point - Y predicted computation p digits \n",Y_q);
 
-writematrix(R_q', '../Data/fc1_1_2_3.csv')
-writematrix(w_q', '../Data/fc2_1_2_3.csv')
+writematrix(R_q', sprintf("../../Data/weights/fc1_%d_2_%d.csv", i-1, p))
+writematrix(w_q', sprintf("../../Data/weights/fc2_%d_2_%d.csv", i-1, p))
 
-writematrix(X_v, '../Data/xv_1_2_3.csv')
+writematrix(X_v, sprintf("../../Data/points/xv_%d_2_%d.csv", i-1, p))
 
-writematrix(YT(i), '../Data/yt_1_2_3.csv')
+writematrix(YT(i), sprintf("../../Data/labels/yt_%d_2_%d.csv", i-1, p))
