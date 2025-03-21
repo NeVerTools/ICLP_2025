@@ -8,8 +8,12 @@ matlab -batch "MATLAB/MultiDeep/main0; MATLAB/MultiDeep/main1"
 
 # All files created, generate the networks and properties
 # The parameters are fixed in the MATLAB scripts, one can change
-# the sample index and the precision inside
+# the sample index and the precision inside them
+conda activate iclp_base
+
 python generate_benchmark.py 0 0 3
 python generate_benchmark.py 0 1 3
 python generate_benchmark.py 1 2 3
 python generate_benchmark.py 5 3 3
+
+conda deactivate
