@@ -54,6 +54,13 @@ cd pyRAT
 conda env create -f pyrat_env.yml
 ```
 
+- _*NeVer2*_
+```bash
+# Get the sources in the same root
+cd ..
+git clone https://github.com/NeverTools/pyNever.git
+```
+
 ### 3. _Mitigation_
 
 To test the mitigation using intervals you will need the interval-based verifier in this repository, and the last
