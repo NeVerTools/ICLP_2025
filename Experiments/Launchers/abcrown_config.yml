@@ -1,7 +1,7 @@
 # Configuration file for running the verification instances
 general:
   root_path: ../
-  csv_name: instances.csv
+  csv_name: instances_3.csv
   enable_incomplete_verification: False
 solver:
   batch_size: 100  # Number of parallel domains to compute on GPU.

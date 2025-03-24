@@ -3,7 +3,7 @@ from maraboupy import Marabou
 verified = []
 unsafe = []
 
-with open('../instances.csv', 'r') as inst:
+with open('../instances_3.csv', 'r') as inst:
     for line in inst:
         f_net, f_prop, _ = line.strip('\n').split(',')
 
