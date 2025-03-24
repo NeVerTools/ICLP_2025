@@ -6,8 +6,8 @@ clc
 load main0
 
 %%
-i = 6; %6
-p = 3; %4
+i = 8;
+p = 3;
 R_q = redprec(R,p);
 W_q = redprec(W,p);
 X_q = redprec(XT(i,:)',p);
