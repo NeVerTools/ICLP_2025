@@ -14,6 +14,6 @@ conda activate iclp_base
 python generate_benchmark.py 0 0 3
 python generate_benchmark.py 0 1 3
 python generate_benchmark.py 1 2 3
-python generate_benchmark.py 5 3 3
+python generate_benchmark.py 26 3 3
 
-conda deactivate
+conda deactivates

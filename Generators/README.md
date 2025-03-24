@@ -15,6 +15,8 @@ it is possible to compute an alleged provably robust sample.
 The weights of the models, the vulnerable point to test and the correct label are exported by the `main1.m`
 script in the [Data](Data) folder, so that the Python file `generate_benchmark.py` can build the ONNX and
 VNNLIB models to test verifiers.
+The vulnerable points are also saved in the [Vulnerability](../Experiments/Vulnerability) directory
+to demonstrate their unsafety under a low-precision implementation.
 
 ---
 ## Usage

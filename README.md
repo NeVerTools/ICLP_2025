@@ -87,5 +87,12 @@ scripts in the [MATLAB](Generators/MATLAB) directory. A Python script builds the
 specifications after the MATLAB scripts saved their data. The bash script [generate_experiments.sh](Generators/generate_experiments.sh)
 runs all the code necessary[^1].
 
+### 2. _Experimental evaluation_
+
+The evaluation of the verification tools on the benchmarks is possible with the bash script
+[test_verifies.sh](Experiments/test_verifiers.sh). For linear models, the preliminary version of
+the interval-based verifier that mitigates the attack can be called with the [test_intver.sh](Experiments/test_intver.sh)
+script.
+
 [^1]: Please note that all bash scripts will likely fail due to [this issue](https://github.com/conda/conda/issues/7980)
 that doesn't allow to run `conda activate` in bash scripts.
