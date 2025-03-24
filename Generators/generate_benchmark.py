@@ -1,3 +1,4 @@
+import shutil
 import sys
 
 import numpy as np
@@ -100,7 +101,15 @@ def main(index: int, model: int, precision: int):
 
 if __name__ == '__main__':
     try:
-        main(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+        sample = int(sys.argv[1])
+        model = int(sys.argv[2])
+        precision = int(sys.argv[3])
+
+        main(sample, model, precision)
+
+        fname = f'xv_{sample}_{model}_{precision}.csv'
+        shutil.copyfile(f'Data/points/{fname}', f'../Experiments/Vulnerability/{fname}')
+
     except Exception as e:
         print(e)
         print('Usage: python generate_benchmark.py <sample index> <model number> <precision> (read comments)')
