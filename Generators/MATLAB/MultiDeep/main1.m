@@ -6,7 +6,7 @@ clc
 load main0
 
 %%
-i = 8;
+i = 27;
 p = 3;
 R_q = redprec(R,p);
 W_q = redprec(W,p);
@@ -45,18 +45,6 @@ end
 if (Y_q ~= Y_o)
     fprintf("%d - Smaller attack - Y predicted computation double \n",Y_o);
     fprintf("%d - Smaller attack - Y predicted computation p digits \n",Y_q);
-else
-    %% The binary search did not find the right spot, use linear search
-    for alpha = linspace(0,alpha,10^p*alpha*10)
-        X_a = redprec(X_q-alpha*delta,p);
-        Y_o = pred_o(X_a,R_q,W_q);
-        Y_q = pred_q(X_a,R_q,W_q,p);
-        if (Y_o ~= Y_q)
-            fprintf("%d - Smaller attack - Y predicted computation double \n",Y_o);
-            fprintf("%d - Smaller attack - Y predicted computation p digits \n",Y_q);
-            break
-        end
-    end
 end
 
 %%
