@@ -20,17 +20,20 @@ with open('instances_1.csv', 'r') as inst:
     for line in inst:
         f_net, f_prop, _ = line.strip('\n').split(',')
 
-        model_3 = IntervalModel(f_net, 6)
+        model_3 = IntervalModel(f_net)
+        model_4 = IntervalModel(f_net, 4)
+        model_5 = IntervalModel(f_net, 5)
+        model_6 = IntervalModel(f_net, 6)
 
-        for i, m in enumerate([model_3]):
+        for i, m in enumerate([model_3, model_4, model_5, model_6]):
             result = m.verify(f_prop)
 
             if result:
-                verified[6].append(f_prop)
+                verified[i + 3].append(f_prop)
             else:
-                unsafe[6].append(f_prop)
+                unsafe[i + 3].append(f_prop)
 
-for i in [6]:
+for i in range(3, 7):
     print(f'p = {i}')
     print(f'# Verified         : {len(verified[i])}')
     print(f'# Unsafe or unknown: {len(unsafe[i])}')
