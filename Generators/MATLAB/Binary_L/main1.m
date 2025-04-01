@@ -1,0 +1,78 @@
+clear
+close all
+clc
+
+%%
+load main0
+
+%%
+%i = 1;
+for i = 1:100
+    p = 3;
+    w_q = redprec(w,p);
+    X_q = redprec(XT(i,:)',p);
+    fprintf("%+f - Y true \n",YT(i));
+    Y_o_t = pred_o(X_q,w_q);
+    fprintf("%+f - Y predicted computation double \n",Y_o_t);
+    Y_q = pred_q(X_q,w_q,p);
+    fprintf("%+f - Y predicted computation p digits \n",Y_q);
+
+    if (Y_o_t * YT(i) < 0)
+        % Not robust
+        continue
+    end
+    
+    alpha = 10;
+    X_a = redprec(X_q-YT(i)*alpha*w_q,p);
+    Y_o_f = pred_o(X_a,w_q);
+    Y_q = pred_q(X_a,w_q,p);
+    fprintf("%+f - Big attack - Y predicted computation double \n",Y_o_f);
+    fprintf("%+f - Big attack - Y predicted computation p digits \n",Y_q);
+
+    if (Y_o_f * Y_o_t > 0)
+        % Too much robust
+        continue
+    end
+    
+    lb = 0;
+    ub = alpha;
+    
+    while (ub - lb > 10^(-p-1))
+        mid = (lb + ub) / 2;
+    
+        X_a = redprec(X_q-YT(i)*mid*w_q,p);
+        Y_o = pred_o(X_a,w_q);
+        Y_q = pred_q(X_a,w_q,p);
+    
+        if (Y_q*Y_o_t < 0)
+            ub = mid;
+        else
+            lb = mid;
+        end
+    end
+    
+    
+    if (Y_o*Y_q<0)
+        fprintf("%+f - Smaller attack - Y predicted computation double \n",Y_o);
+        fprintf("%+f - Smaller attack - Y predicted computation p digits \n",Y_q);
+    end
+
+    if (Y_o * Y_o_t < 0)
+        % Wrong side
+        continue
+    end
+    
+    %%
+    epsilon = 10^(-p);
+    X_v = redprec(X_a+YT(i)*epsilon*sign(w_q),p);
+    Y_o = pred_o(X_v,w_q);
+    Y_q = pred_q(X_v,w_q,p);
+    fprintf("%+f - Verification Point - Y predicted computation double \n",Y_o);
+    fprintf("%+f - Verification Point - Y predicted computation p digits \n",Y_q);
+    
+    writematrix(w_q', sprintf('../../Data/weights/Binary_L/w_%d_0_%d.csv', i-1, p))
+    
+    writematrix(X_v, sprintf('../../Data/points/Binary_L/xv_%d_0_%d.csv', i-1, p))
+    
+    writematrix(YT(i), sprintf('../../Data/labels/Binary_L/yt_%d_0_%d.csv', i-1, p))
+end

@@ -1,19 +1,14 @@
 #!/bin/bash
 
 # Run all MATLAB scripts to create the benchmarks
-matlab -batch "MATLAB/BinaryLinear/main0; MATLAB/BinaryLinear/main1"
-matlab -batch "MATLAB/MultiLinear/main0; MATLAB/MultiLinear/main1"
-matlab -batch "MATLAB/BinaryDeep/main0; MATLAB/BinaryDeep/main1"
-matlab -batch "MATLAB/MultiDeep/main0; MATLAB/MultiDeep/main1"
+matlab -batch "MATLAB/Binary_L/main0; MATLAB/Binary_L/main1"
+matlab -batch "MATLAB/Multi_L/main0; MATLAB/Multi_L/main1"
+matlab -batch "MATLAB/Binary_NL/main0; MATLAB/Binary_NL/main1"
+matlab -batch "MATLAB/Multi_NL/main0; MATLAB/Multi_NL/main1"
 
 # All files created, generate the networks and properties
-# The parameters are fixed in the MATLAB scripts, one can change
-# the sample index and the precision inside them
+# The attack precision is fixed in the MATLAB scripts, it
+# must be changed inside them
 conda activate iclp_base
-
-python generate_benchmark.py 0 0 3
-python generate_benchmark.py 0 1 3
-python generate_benchmark.py 1 2 3
-python generate_benchmark.py 26 3 3
-
+python generate_benchmark.py
 conda deactivates

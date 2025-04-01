@@ -2,10 +2,10 @@
 
 ---
 This directory contains the MATLAB scripts that train four different MNIST classifiers:
-* 0 - [Binary Linear Classifier](MATLAB/BinaryLinear)
-* 1 - [Multiclass Linear Classifier](MATLAB/MultiLinear)
-* 2 - [Binary Deep Classifier](MATLAB/BinaryDeep)
-* 3 - [Multiclass Deep Classifier](MATLAB/MultiDeep)
+* 0 - [Binary Linear Classifier](MATLAB/Binary_L)
+* 1 - [Multiclass Linear Classifier](MATLAB/Multi_L)
+* 2 - [Binary Deep Classifier](MATLAB/Binary_NL)
+* 3 - [Multiclass Deep Classifier](MATLAB/Multi_NL)
 
 All the settings contain two files, `main0.m` and `main1.m`, that train the classifier and attack it,
 respectively. Running both of them will result in finding a point close to the decision boundary such

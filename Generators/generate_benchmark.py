@@ -1,6 +1,5 @@
 import os
 import shutil
-import sys
 
 import numpy as np
 from pynever.networks import SequentialNetwork
@@ -8,7 +7,7 @@ from pynever.nodes import FullyConnectedNode, ReLUNode
 from pynever.strategies.conversion.converters.onnx import ONNXConverter
 
 
-def load_weights(mpath:str, i: int, m: int, p: int) -> list:
+def load_weights(mpath: str, i: int, m: int, p: int) -> list:
     """
     Load the weights from files.
     The files are of the form w_<index>_<model>_<precision>.csv for linear models
@@ -35,7 +34,8 @@ def main(mpath: str, index: int, model: int, precision: int):
     Script to recreate the benchmarks in the Experiments package
 
     :param index: the example to consider
-    :param model: the model to load (0: binary linear, 1: multiclass linear, 2: binary deep, 3: multiclass deep)
+    :param model: the model to load (0: binary linear, 1: multiclass linear,
+                                     2: binary nonlinear, 3: multiclass nonlinear)
     :param precision: the precision of the model
     """
 
@@ -46,18 +46,18 @@ def main(mpath: str, index: int, model: int, precision: int):
 
     # Create network
     ntype = 'bin' if model % 2 == 0 else 'multi'
-    arch = 'lin' if model < 2 else 'deep'
+    arch = 'l' if model < 2 else 'nl'
     net_name = f'mnist_{index}_{ntype}_{arch}_{precision}'
 
     nn = SequentialNetwork(net_name, 'X')
 
-    f = 1 if model % 2 == 0 else 10
+    outs = 1 if model % 2 == 0 else 10
     if len(weights) == 1:
-        nn.append_node(FullyConnectedNode('fc1', (784,), f, weights[0], np.zeros(f)))
+        nn.append_node(FullyConnectedNode('fc1', (784,), outs, weights[0], np.zeros(outs)))
     else:
         nn.append_node(FullyConnectedNode('fc1', (784,), 1000, weights[0], np.zeros(1000)))
         nn.append_node(ReLUNode('rl1', (1000,)))
-        nn.append_node(FullyConnectedNode('fc2', (1000,), f, weights[1], np.zeros(f)))
+        nn.append_node(FullyConnectedNode('fc2', (1000,), outs, weights[1], np.zeros(outs)))
 
     # Save network
     ONNXConverter().from_neural_network(nn).save(f'../Experiments/Networks/{net_name}.onnx')
@@ -82,7 +82,7 @@ def main(mpath: str, index: int, model: int, precision: int):
         for i in range(1 if ntype == 'bin' else 10):
             p.write(f'(declare-const Y_{i} Real)\n\n')
 
-        # Constraints on X
+        # Constraints on X (preserving rounding)
         for i in range(xv.shape[0]):
             p.write(f'(assert (>= X_{i} {round((xv[i, 0] - eps) * 10 ** precision) / 10 ** precision}))\n')
             p.write(f'(assert (<= X_{i} {round((xv[i, 0] + eps) * 10 ** precision) / 10 ** precision}))\n')
@@ -104,7 +104,7 @@ def main(mpath: str, index: int, model: int, precision: int):
 
 if __name__ == '__main__':
     try:
-        for m in ['Binary Linear', 'Multi Linear', 'Binary Deep', 'Multi Deep']:
+        for m in ['Binary_L', 'Multi_L', 'Binary_NL', 'Multi_NL']:
             for p in os.listdir(f'Data/labels/{m}'):
                 tokens = p.replace('yt_', '').replace('.csv', '').split('_')
                 sample = int(tokens[0])
