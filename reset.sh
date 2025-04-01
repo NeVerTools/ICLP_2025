@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # Delete all data
-rm -rf Generators/Data/labels/Binary\ Linear/*
-rm -rf Generators/Data/labels/Binary\ Deep/*
-rm -rf Generators/Data/labels/Multi\ Linear/*
-rm -rf Generators/Data/labels/Multi\ Deep/*
+rm -rf Generators/Data/labels/Binary_L/*
+rm -rf Generators/Data/labels/Binary_NL/*
+rm -rf Generators/Data/labels/Multi_L/*
+rm -rf Generators/Data/labels/Multi_NL/*
 
-rm -rf Generators/Data/points/Binary\ Linear/*
-rm -rf Generators/Data/points/Binary\ Deep/*
-rm -rf Generators/Data/points/Multi\ Linear/*
-rm -rf Generators/Data/points/Multi\ Deep/*
+rm -rf Generators/Data/points/Binary_L/*
+rm -rf Generators/Data/points/Binary_NL/*
+rm -rf Generators/Data/points/Multi_L/*
+rm -rf Generators/Data/points/Multi_NL/*
 
-rm -rf Generators/Data/weights/Binary\ Linear/*
-rm -rf Generators/Data/weights/Binary\ Deep/*
-rm -rf Generators/Data/weights/Multi\ Linear/*
-rm -rf Generators/Data/weights/Multi\ Deep/*
+rm -rf Generators/Data/weights/Binary_L/*
+rm -rf Generators/Data/weights/Binary_NL/*
+rm -rf Generators/Data/weights/Multi_L/*
+rm -rf Generators/Data/weights/Multi_NL/*
 
 rm -rf Experiments/Networks/*
 rm -rf Experiments/Properties/*
