@@ -6,7 +6,6 @@ clc
 load main0
 
 %%
-%i = 1;
 for i = 1:100
     p = 3;
     [d,c] = size(W);
@@ -53,28 +52,27 @@ for i = 1:100
     end
     
     
-    if (Y_q ~= Y_o)
+    if (Y_o == Y_o_t && Y_q ~= Y_o)
         fprintf("%d - Smaller attack - Y predicted computation double \n",Y_o);
         fprintf("%d - Smaller attack - Y predicted computation p digits \n",Y_q);
-    end
 
-    if (Y_o ~= Y_o_t)
-        % Wrong side
-        continue
+        %%
+        epsilon = 10^(-p);
+        X_v = redprec(X_a+epsilon*sign(W_q(:,YT(i)+1)),p);
+        Y_o = pred_o(X_v,W_q);
+        Y_q = pred_q(X_v,W_q,p);
+
+        if (Y_o == Y_q)
+            fprintf("*** INDEX %d ***\n", i-1);
+            fprintf("%d - Verification Point - Y predicted computation double \n",Y_o);
+            fprintf("%d - Verification Point - Y predicted computation p digits \n",Y_q);
+            
+            
+            writematrix(W_q', sprintf('../../Data/weights/Multi_L/w_%d_1_%d.csv', i-1, p))
+            
+            writematrix(X_v, sprintf('../../Data/points/Multi_L/xv_%d_1_%d.csv', i-1, p))
+            
+            writematrix(YT(i), sprintf('../../Data/labels/Multi_L/yt_%d_1_%d.csv', i-1, p))
+        end
     end
-    
-    %%
-    epsilon = 10^(-p);
-    X_v = redprec(X_a+epsilon*sign(W_q(:,YT(i)+1)),p);
-    Y_o = pred_o(X_v,W_q);
-    Y_q = pred_q(X_v,W_q,p);
-    fprintf("%d - Verification Point - Y predicted computation double \n",Y_o);
-    fprintf("%d - Verification Point - Y predicted computation p digits \n",Y_q);
-    
-    
-    writematrix(W_q', sprintf('../../Data/weights/Multi_L/w_%d_1_%d.csv', i-1, p))
-    
-    writematrix(X_v, sprintf('../../Data/points/Multi_L/xv_%d_1_%d.csv', i-1, p))
-    
-    writematrix(YT(i), sprintf('../../Data/labels/Multi_L/yt_%d_1_%d.csv', i-1, p))
 end

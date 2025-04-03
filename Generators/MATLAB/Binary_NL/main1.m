@@ -6,7 +6,6 @@ clc
 load main0
 
 %%
-%i = 2;
 for i = 1:100
     p = 3;
     R_q = redprec(R,p);
@@ -53,28 +52,27 @@ for i = 1:100
         end
     end
     
-    if (Y_o*Y_q<0)
+    if (Y_o*Y_o_t > 0 && Y_o*Y_q<0)
         fprintf("%+f - Smaller attack - Y predicted computation double \n",Y_o);
         fprintf("%+f - Smaller attack - Y predicted computation p digits \n",Y_q);
-    end
 
-    if (Y_o * Y_o_t < 0)
-        % Wrong side
-        continue
+        %%
+        epsilon = 10^(-p);
+        X_v = redprec(X_a+YT(i)*epsilon*sign(delta),p);
+        Y_o = pred_o(X_v,R_q,w_q);
+        Y_q = pred_q(X_v,R_q,w_q,p);
+
+        if (Y_o*Y_q > 0)
+            fprintf("*** INDEX %d ***\n", i-1);
+            fprintf("%+f - Verification Point - Y predicted computation double \n",Y_o);
+            fprintf("%+f - Verification Point - Y predicted computation p digits \n",Y_q);
+            
+            writematrix(R_q', sprintf("../../Data/weights/Binary_NL/fc1_%d_2_%d.csv", i-1, p))
+            writematrix(w_q', sprintf("../../Data/weights/Binary_NL/fc2_%d_2_%d.csv", i-1, p))
+            
+            writematrix(X_v, sprintf("../../Data/points/Binary_NL/xv_%d_2_%d.csv", i-1, p))
+            
+            writematrix(YT(i), sprintf("../../Data/labels/Binary_NL/yt_%d_2_%d.csv", i-1, p))
+        end
     end
-    
-    %%
-    epsilon = 10^(-p);
-    X_v = redprec(X_a+YT(i)*epsilon*sign(delta),p);
-    Y_o = pred_o(X_v,R_q,w_q);
-    Y_q = pred_q(X_v,R_q,w_q,p);
-    fprintf("%+f - Verification Point - Y predicted computation double \n",Y_o);
-    fprintf("%+f - Verification Point - Y predicted computation p digits \n",Y_q);
-    
-    writematrix(R_q', sprintf("../../Data/weights/Binary_NL/fc1_%d_2_%d.csv", i-1, p))
-    writematrix(w_q', sprintf("../../Data/weights/Binary_NL/fc2_%d_2_%d.csv", i-1, p))
-    
-    writematrix(X_v, sprintf("../../Data/points/Binary_NL/xv_%d_2_%d.csv", i-1, p))
-    
-    writematrix(YT(i), sprintf("../../Data/labels/Binary_NL/yt_%d_2_%d.csv", i-1, p))
 end
