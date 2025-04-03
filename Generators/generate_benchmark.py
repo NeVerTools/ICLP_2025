@@ -104,6 +104,10 @@ def main(mpath: str, index: int, model: int, precision: int):
 
 if __name__ == '__main__':
     try:
+        for d in ['Networks', 'Properties', 'Vulnerability']:
+            if not os.path.exists(f'../Experiments/{d}'):
+                os.mkdir(f'../Experiments/{d}')
+
         for m in ['Binary_L', 'Multi_L', 'Binary_NL', 'Multi_NL']:
             for p in os.listdir(f'Data/labels/{m}'):
                 tokens = p.replace('yt_', '').replace('.csv', '').split('_')

@@ -23,6 +23,6 @@ with open(f'instances_{idx}.csv', 'r') as inst:
         else:
             unsafe.append(f_prop)
 
-print(f'p = {idx}')
+print(f'p = {p}')
 print(f'# Verified  : {len(verified)}')
 print(f'# Unsafe    : {len(unsafe)}')
