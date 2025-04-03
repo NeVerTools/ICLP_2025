@@ -7,7 +7,7 @@ load main0
 
 %%
 for i = 1:100
-    p = 3;
+    p = 4;
     [d,c] = size(W);
     W_q = redprec(W,p);
     X_q = redprec(XT(i,:)',p);

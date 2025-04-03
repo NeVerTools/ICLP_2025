@@ -7,7 +7,7 @@ load main0
 
 %%
 for i = 1:100
-    p = 3;
+    p = 4;
     w_q = redprec(w,p);
     X_q = redprec(XT(i,:)',p);
     fprintf("%+f - Y true \n",YT(i));

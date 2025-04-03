@@ -76,9 +76,8 @@ conda deactivate
 ---
 ## Usage
 
-This repository contains the data that is used in the paper. It is possible to use the verification
-benchmarks in the [Experiments](Experiments) directory directly, or you can generate more using the scripts
-in the [Generators](Generators) directory.
+This repository contains all the code to reproduce the experiments of the paper. First you will generate the attacks,
+then you will perform verification on the instances.
 
 ### 1. _Benchmarks generation_
 
