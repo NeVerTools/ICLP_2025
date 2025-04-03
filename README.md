@@ -13,11 +13,12 @@ between each other, so you will need to create the following environments (examp
 
 ### 1. _Benchmark generation_
 
-To recreate the benchmarks contained in the [Experiments](Experiments) directory you will need MATLAB and Python 3.11.
+To recreate the benchmarks presented in the paper you will need MATLAB and Python 3.11.
 The same environment will be used for verification with _*NeVer2*_ and _*Marabou*_.
 
 You can get MATLAB academic licenses [here](https://www.mathworks.com/pricing-licensing.html?prodcode=ML&intendeduse=edu)
-and create the Python environment with the following commands (assuming _conda_ is installed):
+and create the Python environment with the following commands (assuming _[conda](https://anaconda.org/anaconda/conda)_
+is installed):
 
 ```bash
 conda create -n iclp_base python=3.11
@@ -30,10 +31,10 @@ conda deactivate
 ### 2. _Benchmark verification_
 
 To test the benchmarks with verification tools you will both need to get the sources and create the corresponding
-environments. The scripts in the _Experiments_ directory assume that the verifier sources are in the same root directory
+environments. The scripts in the [Experiments](Experiments) directory assume that the verifier sources are in the same root directory
 of this repository.
 
-- _*$\alpha$-$\beta$-CROWN*_
+- _*alpha-beta-CROWN*_
 
 ```bash
 # Get the sources in the same root
