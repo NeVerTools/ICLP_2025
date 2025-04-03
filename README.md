@@ -1,4 +1,4 @@
-# Detection and Mitigation of Precision-Based Attacks in Neural Network Verification
+# Generation and Mitigation of Precision-Based Evasion Attacks in Neural Network Verification
 
 ---
 ## Installation and setup
