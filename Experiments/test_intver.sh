@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Usage: ./test_intver.sh <model_file> <property_file> <precision>
+# Usage: ./test_intver.sh <model_type> <precision>
+# <model_type> is either 0 (binary linear) or 1 (multi linear)
 
 MODEL=$1
-PROPERTY=$2
-PRECISION=$3
+PRECISION=$2
 
 conda activate iclp_iv
-python IntervalVerifier/verifier.py "$MODEL" "$PROPERTY" --precision "$PRECISION"
+python launch_iv.py "$MODEL" "$PRECISION"
 conda deactivate
