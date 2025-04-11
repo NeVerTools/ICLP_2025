@@ -1,7 +1,11 @@
 # Generation and Mitigation of Precision-Based Evasion Attacks in Neural Network Verification
 
+### Stefano Demarchi, Luca Oneto, Davide Anguita and Armando Tacchella
+### Submitted for publication in _ICLP_ 2025
+
 ---
 ## Installation and setup
+
 
 Clone this repository using the _recursive_ option
 ```bash
