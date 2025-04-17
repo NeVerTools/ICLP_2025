@@ -4,11 +4,12 @@ clc
 
 %%
 load main0
+p = 4;
+w_q = redprec(w,p);
+writematrix(w_q', sprintf('../../Data/weights/Binary_L/w_0_%d.csv', p))
 
 %%
 for i = 1:100
-    p = 4;
-    w_q = redprec(w,p);
     X_q = redprec(XT(i,:)',p);
     fprintf("%+f - Y true \n",YT(i));
     Y_o_t = pred_o(X_q,w_q);
@@ -65,11 +66,8 @@ for i = 1:100
             fprintf("*** INDEX %d ***\n", i-1);
             fprintf("%+f - Verification Point - Y predicted computation double \n",Y_o);
             fprintf("%+f - Verification Point - Y predicted computation p digits \n",Y_q);
-            
-            writematrix(w_q', sprintf('../../Data/weights/Binary_L/w_%d_0_%d.csv', i-1, p))
-            
+
             writematrix(X_v, sprintf('../../Data/points/Binary_L/xv_%d_0_%d.csv', i-1, p))
-            
             writematrix(YT(i), sprintf('../../Data/labels/Binary_L/yt_%d_0_%d.csv', i-1, p))
         end
     end

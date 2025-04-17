@@ -7,21 +7,21 @@ from pynever.nodes import FullyConnectedNode, ReLUNode
 from pynever.strategies.conversion.converters.onnx import ONNXConverter
 
 
-def load_weights(mpath: str, i: int, m: int, p: int) -> list:
+def load_weights(mpath: str, m: int, p: int) -> list:
     """
     Load the weights from files.
-    The files are of the form w_<index>_<model>_<precision>.csv for linear models
-    and fc1/2_<index>_<model>_<precision>.csv for deep models.
+    The files are of the form w_<model>_<precision>.csv for linear models
+    and fc1/2_<model>_<precision>.csv for nonlinear models.
 
     """
 
     if m < 2:
-        with open(f'Data/weights/{mpath}/w_{i}_{m}_{p}.csv', 'r') as w_f:
+        with open(f'Data/weights/{mpath}/w_{m}_{p}.csv', 'r') as w_f:
             lines = w_f.readlines()
             return [np.array([l.strip('\n').split(',') for l in lines], dtype=float)]
     else:
-        with (open(f'Data/weights/{mpath}/fc1_{i}_{m}_{p}.csv', 'r') as fc1,
-              open(f'Data/weights/{mpath}/fc2_{i}_{m}_{p}.csv', 'r') as fc2):
+        with (open(f'Data/weights/{mpath}/fc1_{m}_{p}.csv', 'r') as fc1,
+              open(f'Data/weights/{mpath}/fc2_{m}_{p}.csv', 'r') as fc2):
             lines1 = fc1.readlines()
             lines2 = fc2.readlines()
             weights1 = np.array([l.strip('\n').split(',') for l in lines1], dtype=float)
@@ -42,12 +42,12 @@ def main(mpath: str, index: int, model: int, precision: int):
     assert model in [0, 1, 2, 3], "Incorrect arguments, please read documentation"
 
     # Open weights
-    weights = load_weights(mpath, index, model, precision)
+    weights = load_weights(mpath, model, precision)
 
     # Create network
     ntype = 'bin' if model % 2 == 0 else 'multi'
     arch = 'l' if model < 2 else 'nl'
-    net_name = f'mnist_{index}_{ntype}_{arch}_{precision}'
+    net_name = f'mnist_{ntype}_{arch}_{precision}'
 
     nn = SequentialNetwork(net_name, 'X')
 
@@ -122,4 +122,3 @@ if __name__ == '__main__':
 
     except Exception as e:
         print(e)
-        print('Usage: python generate_benchmark.py <sample index> <model number> <precision> (read comments)')
