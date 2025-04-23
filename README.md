@@ -55,7 +55,7 @@ conda env create -f complete_verifier/environment.yaml --name alpha-beta-crown
 cd ..
 git clone https://git.frama-c.com/pub/pyrat.git
 
-cd pyRAT
+cd pyrat
 conda env create -f pyrat_env.yml
 ```
 
