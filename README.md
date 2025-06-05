@@ -9,7 +9,7 @@
 
 Clone this repository using the _recursive_ option
 ```bash
-git clone --recursive https://github.com/nevertools/ICLP_2025.git
+git clone --recursive https://github.com/nevertools/iFM_2025.git
 ```
 
 To reproduce the experiments presented in the paper you will need to use different tools with little compatibility
@@ -25,8 +25,8 @@ and create the Python environment with the following commands (assuming _[conda]
 is installed):
 
 ```bash
-conda create -n iclp_base python=3.11
-conda activate iclp_base
+conda create -n ifm_base python=3.11
+conda activate ifm_base
 
 pip install pynever maraboupy
 conda deactivate
@@ -71,8 +71,8 @@ git clone https://github.com/NeverTools/pyNever.git
 To test the mitigation using intervals you will need the interval-based verifier in this repository, and the last
 required environment:
 ```bash
-conda create -n iclp_iv python=3.7
-conda activate iclp_iv
+conda create -n ifm_iv python=3.7
+conda activate ifm_iv
 
 pip install pyinterval
 conda deactivate
