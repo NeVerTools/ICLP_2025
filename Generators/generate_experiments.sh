@@ -9,6 +9,6 @@ matlab -nodisplay -r "run('MATLAB/Multi_NL/main0.m');run('MATLAB/Multi_NL/main1.
 # All files created, generate the networks and properties
 # The attack precision is fixed in the MATLAB scripts, it
 # must be changed inside them
-conda activate iclp_base
+conda activate ifm_base
 python generate_benchmark.py
-conda deactivates
+conda deactivate
