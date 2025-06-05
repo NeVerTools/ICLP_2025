@@ -6,6 +6,6 @@
 MODEL=$1
 PRECISION=$2
 
-conda activate iclp_iv
+conda activate ifm_iv
 python launch_iv.py "$MODEL" "$PRECISION"
 conda deactivate
