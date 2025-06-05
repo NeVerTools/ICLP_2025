@@ -5,6 +5,6 @@
 ./Launchers/marabou.sh
 ./Launchers/never2.sh
 
-conda activate iclp_base
+conda activate ifm_base
 python show_vulnerability.py
 conda deactivate
